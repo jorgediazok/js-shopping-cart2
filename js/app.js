@@ -14,7 +14,44 @@
 
   cartBtn.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      if (event.target.parentElement.classList('store-item-icon')) {
+      if (event.target.parentElement.classList.contains('store-item-icon')) {
+        let fullPath = event.target.parentElement.previousElementSibling.src;
+        let pos = fullPath.indexOf('img');
+        let partPath = fullPath.slice(pos);
+        const item = {};
+        item.img = `img-carts${partPath}`;
+        let name =
+          event.target.parentElement.parentElement.nextElementSibling
+            .children[0].children[0].textContent;
+        item.name = name;
+        let price =
+          event.target.parentElement.parentElement.nextElementSibling
+            .children[0].children[1].textContent;
+        let finalPrice = price.slice(1).trim();
+        item.price = finalPrice;
+        const cartItem = document.createElement('div');
+        cartItem.classList(
+          'cart-item',
+          'd-flex',
+          'justify-content-between',
+          'text-capitalize',
+          'my-3'
+        );
+
+        cartItem.innerHTML = `<!-- cart item -->
+        <div class="cart-item d-flex justify-content-between text-capitalize my-3">
+          <img src="${item.img}" class="img-fluid rounded-circle" id="item-img" alt="">
+          <div class="item-text">
+
+            <p id="cart-item-title" class="font-weight-bold mb-0">${item.name}</p>
+            <span>$</span>
+            <span id="cart-item-price" class="cart-item-price" class="mb-0">${item.price}</span>
+          </div>
+          <a href="#" id='cart-item-remove' class="cart-item-remove">
+            <i class="fas fa-trash"></i>
+          </a>
+        </div>
+        <!--end of  cart item -->`;
       }
     });
   });
