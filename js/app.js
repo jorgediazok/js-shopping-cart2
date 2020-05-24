@@ -8,7 +8,8 @@
   });
 })();
 
-//add items to the car
+//add items to the car //add another item to the car
+//add another item to the car
 (function () {
   const cartBtn = document.querySelectorAll('.store-item-icon');
   //I am adding this just in case
